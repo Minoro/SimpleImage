@@ -10,10 +10,10 @@ public abstract class SimpleImage {
         int color = (pixel << 16) | (pixel << 8) | pixel;
         image.setRGB(x, y, color);
     }
+
     public int getPixel(int x, int y){
         return ( this.image.getRGB(x,y) >> 16) & 0xFF;
     }
-    public abstract void setRGB(int x, int y, int rgb[]);
 
     public int[] getRGB(int x, int y) {
         int[] rgb = new int[3];
@@ -24,8 +24,6 @@ public abstract class SimpleImage {
         return rgb;
     }
 
-    public abstract boolean isGray();
-    public abstract boolean isBinary();
     public int getHeight(){
         return this.image.getHeight();
     }
@@ -42,4 +40,7 @@ public abstract class SimpleImage {
         return this.image;
     }
 
+    public abstract void setRGB(int x, int y, int rgb[]);
+    public abstract boolean isGray();
+    public abstract boolean isBinary();
 }
