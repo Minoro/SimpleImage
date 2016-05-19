@@ -4,6 +4,8 @@ import src.br.uel.image.SimpleGrayImage;
 import src.br.uel.image.SimpleImage;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 public class Histogram {
 
@@ -23,14 +25,14 @@ public class Histogram {
         return hist;
     }
 
-    public int[] getNormalizedHistogram(SimpleImage image){
+    public float[] getNormalizedHistogram(SimpleImage image){
         if( !image.isGray() && !image.isBinary()){
             throw new IllegalArgumentException("The image must be a SimpleGrayImage or a SimpleBinaryImage");
         }
 
         int w = image.getWidth(), h = image.getHeight();
         int total = w*h;
-        int hist[] = new int[256];
+        float hist[] = new float[256];
 
         for(int y = 0; y < h; y++){
             for(int x = 0; x < w; x++){
@@ -90,12 +92,25 @@ public class Histogram {
         plotHistogram(hist);
     }
 
-    public void plotHistogram(int hist[]){
+    public void plotHistogram(final int hist[]){
         JFrame frame = new JFrame();
         frame.setResizable(false);
         frame.setSize(256, 100);
 
-        JLabel label = new JLabel("Histograma", new ImageIcon(toImage(hist).getBufferedImage()), SwingConstants.CENTER);
+        final JLabel label = new JLabel("Histograma", new ImageIcon(toImage(hist).getBufferedImage()), SwingConstants.CENTER);
+        label.setVerticalTextPosition(SwingConstants.BOTTOM);
+        label.setHorizontalTextPosition(SwingConstants.CENTER);
+        label.addMouseMotionListener(new MouseMotionListener() {
+            @Override
+            public void mouseDragged(MouseEvent e){
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e){
+                label.setText("Pixel: "+e.getX()+" Qtd: "+ hist[e.getX()]);
+            }
+        });
 
         frame.getContentPane().add(label);
         frame.pack();
