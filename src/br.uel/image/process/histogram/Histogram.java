@@ -3,6 +3,8 @@ package src.br.uel.image.process.histogram;
 import src.br.uel.image.SimpleGrayImage;
 import src.br.uel.image.SimpleImage;
 
+import javax.swing.*;
+
 public class Histogram {
 
     public int[] getHistogram(SimpleImage image){
@@ -56,7 +58,7 @@ public class Histogram {
         int total = w*h;
         for (int i = 0; i < 256; i++) {
             sum += hist[i];
-            table[i] = Math.round(sum*256.F/total);
+            table[i] = Math.round(sum*256/total);
         }
 
         return table;
@@ -81,6 +83,24 @@ public class Histogram {
         }
 
         return imageOut;
+    }
+
+    public void plotHistogram(SimpleImage image){
+        int hist[] = getHistogram(image);
+        plotHistogram(hist);
+    }
+
+    public void plotHistogram(int hist[]){
+        JFrame frame = new JFrame();
+        frame.setResizable(false);
+        frame.setSize(256, 100);
+
+        JLabel label = new JLabel("Histograma", new ImageIcon(toImage(hist).getBufferedImage()), SwingConstants.CENTER);
+
+        frame.getContentPane().add(label);
+        frame.pack();
+
+        frame.setVisible(true);
     }
 
 }
