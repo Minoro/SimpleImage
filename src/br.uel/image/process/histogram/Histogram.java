@@ -5,7 +5,7 @@ import src.br.uel.image.SimpleImage;
 public class Histogram {
 
     public int[] getHistogram(SimpleImage image){
-        if(!image.isGray() || !image.isBinary()){
+        if( !image.isGray() && !image.isBinary()){
             throw new IllegalArgumentException("The image must be a SimpleGrayImage or a SimpleBinaryImage");
         }
 
