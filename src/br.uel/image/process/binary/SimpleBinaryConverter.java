@@ -5,8 +5,8 @@ import src.br.uel.image.SimpleImage;
 
 public class SimpleBinaryConverter {
 
-    public static final int WHITE = 255;
-    public static final int BLACK = 0;
+    private static final int WHITE = 255;
+    private static final int BLACK = 0;
 
     public SimpleImage binarize(SimpleImage image, int threshold){
         int w = image.getWidth(), h = image.getHeight();
@@ -25,4 +25,10 @@ public class SimpleBinaryConverter {
 
         return imageOut;
     }
+
+
+
+
+
+
 }
