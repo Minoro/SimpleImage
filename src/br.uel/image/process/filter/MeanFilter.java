@@ -4,12 +4,15 @@ import src.br.uel.image.SimpleColorImage;
 import src.br.uel.image.SimpleGrayImage;
 import src.br.uel.image.SimpleImage;
 
-public class MeanFilter implements Filter {
+public class MeanFilter implements Filter, ColorFilter {
     @Override
     public SimpleImage filter(SimpleImage image, int radius){
 
         if(!image.isGray()){
-            return filterColorImage(image, radius);
+            if (image instanceof SimpleColorImage){
+                return filter((SimpleColorImage) image, radius);
+            }
+            throw new IllegalArgumentException("Tipo de imagem não suportado!");
         }
 
         int w = image.getWidth(), h = image.getHeight();
@@ -38,7 +41,8 @@ public class MeanFilter implements Filter {
         return imageOut;
     }
 
-    private SimpleImage filterColorImage(SimpleImage image, int radius){
+    @Override
+    public SimpleColorImage filter(SimpleColorImage image, int radius){
         int w = image.getWidth(), h = image.getHeight();
         SimpleColorImage imageOut = new SimpleColorImage(w, h);
 
