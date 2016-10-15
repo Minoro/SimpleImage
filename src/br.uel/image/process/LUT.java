@@ -1,18 +1,18 @@
-package src.br.uel.image.process;
+package br.uel.image.process;
 
-import src.br.uel.image.SimpleGrayImage;
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleGrayImage;
+import br.uel.image.SimpleImage;
 
 public class LUT {
 
-    public SimpleImage applay(SimpleImage image, int table[]){
+    public SimpleImage applay(SimpleImage image, int table[]) {
         int w = image.getWidth(), h = image.getHeight();
 
         SimpleImage imageOut = new SimpleGrayImage(w, h);
 
-        for(int y = 0; y < h; y++){
-            for(int x = 0; x < w; x++){
-                imageOut.putPixel(x,y, table[image.getPixel(x,y)]);
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                imageOut.putPixel(x, y, table[image.getPixel(x, y)]);
             }
         }
 

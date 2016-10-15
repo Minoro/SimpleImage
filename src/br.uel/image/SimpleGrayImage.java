@@ -1,15 +1,15 @@
-package src.br.uel.image;
+package br.uel.image;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SimpleGrayImage extends SimpleImage{
+public class SimpleGrayImage extends SimpleImage {
 
     public SimpleGrayImage(int width, int height) {
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
     }
 
-    public SimpleGrayImage(BufferedImage image){
+    public SimpleGrayImage(BufferedImage image) {
         this.image = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
 
         BufferedImage grayImage = new BufferedImage(image.getWidth(), image.getHeight(),
@@ -23,19 +23,19 @@ public class SimpleGrayImage extends SimpleImage{
 
 
     @Override
-    public void setRGB(int x, int y, int rgb[]){
-        int color = (rgb[0] + rgb[1]+rgb[2])/3;
-        this.putPixel(x,y,color);
+    public void setRGB(int x, int y, int rgb[]) {
+        int color = (rgb[0] + rgb[1] + rgb[2]) / 3;
+        this.putPixel(x, y, color);
     }
 
     @Override
-    public boolean isGray(){
+    public boolean isGray() {
         return true;
     }
 
     @Override
-    public boolean isBinary(){
-        if(image.getType() == BufferedImage.TYPE_BYTE_BINARY){
+    public boolean isBinary() {
+        if (image.getType() == BufferedImage.TYPE_BYTE_BINARY) {
             return true;
         }
         return false;
