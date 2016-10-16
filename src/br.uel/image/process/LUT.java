@@ -5,7 +5,7 @@ import br.uel.image.SimpleImage;
 
 public class LUT {
 
-    public SimpleImage applay(SimpleImage image, int table[]) {
+    public SimpleImage apply(SimpleImage image, int table[]) {
         int w = image.getWidth(), h = image.getHeight();
 
         SimpleImage imageOut = new SimpleGrayImage(w, h);
