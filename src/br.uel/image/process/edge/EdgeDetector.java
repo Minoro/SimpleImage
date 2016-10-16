@@ -1,6 +1,6 @@
-package src.br.uel.image.process.edge;
+package br.uel.image.process.edge;
 
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleImage;
 
 public interface EdgeDetector {
 

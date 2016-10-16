@@ -1,7 +1,7 @@
-package src.br.uel.image.process.filter;
+package br.uel.image.process.filter;
 
-import src.br.uel.image.SimpleGrayImage;
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleGrayImage;
+import br.uel.image.SimpleImage;
 
 /**
  * Replace the central pixel of the kernel by the maximum value

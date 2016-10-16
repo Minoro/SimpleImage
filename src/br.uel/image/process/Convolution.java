@@ -1,8 +1,8 @@
-package src.br.uel.image.process;
+package br.uel.image.process;
 
 
-import src.br.uel.image.SimpleGrayImage;
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleGrayImage;
+import br.uel.image.SimpleImage;
 
 public class Convolution {
 

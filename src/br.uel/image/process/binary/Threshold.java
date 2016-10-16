@@ -1,7 +1,7 @@
-package src.br.uel.image.process.binary;
+package br.uel.image.process.binary;
 
-import src.br.uel.image.SimpleImage;
-import src.br.uel.image.process.histogram.Histogram;
+import br.uel.image.SimpleImage;
+import br.uel.image.process.histogram.Histogram;
 
 public class Threshold {
 
