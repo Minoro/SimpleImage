@@ -1,6 +1,6 @@
-package src.br.uel.image.process.filter;
+package br.uel.image.process.filter;
 
-import src.br.uel.image.SimpleColorImage;
+import br.uel.image.SimpleColorImage;
 
 /*
 *   Given a RGB Image, for each pixel:

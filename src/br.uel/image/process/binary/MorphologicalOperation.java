@@ -1,7 +1,7 @@
-package src.br.uel.image.process.binary;
+package br.uel.image.process.binary;
 
-import src.br.uel.image.SimpleBinaryImage;
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleBinaryImage;
+import br.uel.image.SimpleImage;
 
 public class MorphologicalOperation {
 

@@ -1,4 +1,4 @@
-package src.br.uel.image;
+package br.uel.image;
 
 import java.awt.image.BufferedImage;
 
@@ -11,28 +11,28 @@ public abstract class SimpleImage {
         image.setRGB(x, y, color);
     }
 
-    public int getPixel(int x, int y){
-        return ( this.image.getRGB(x,y) >> 16) & 0xFF;
+    public int getPixel(int x, int y) {
+        return (this.image.getRGB(x, y) >> 16) & 0xFF;
     }
 
     public int[] getRGB(int x, int y) {
         int[] rgb = new int[3];
-        rgb[0] = (image.getRGB(x,y) >> 16) & 0xFF;
-        rgb[1] = (image.getRGB(x,y) >> 8) & 0xFF;
-        rgb[2] = image.getRGB(x,y) & 0xFF;
+        rgb[0] = (image.getRGB(x, y) >> 16) & 0xFF;
+        rgb[1] = (image.getRGB(x, y) >> 8) & 0xFF;
+        rgb[2] = image.getRGB(x, y) & 0xFF;
 
         return rgb;
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return this.image.getHeight();
     }
 
-    public int getWidth(){
+    public int getWidth() {
         return this.image.getWidth();
     }
 
-    public void setBufferedImage(BufferedImage image){
+    public void setBufferedImage(BufferedImage image) {
         this.image = image;
     }
 
@@ -41,6 +41,8 @@ public abstract class SimpleImage {
     }
 
     public abstract void setRGB(int x, int y, int rgb[]);
+
     public abstract boolean isGray();
+
     public abstract boolean isBinary();
 }

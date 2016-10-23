@@ -1,10 +1,11 @@
 package src.br.uel.image.process.edge;
 
-import src.br.uel.image.SimpleGrayImage;
-import src.br.uel.image.SimpleImage;
-import src.br.uel.image.process.Convolution;
+import br.uel.image.SimpleGrayImage;
+import br.uel.image.SimpleImage;
+import br.uel.image.process.Convolution;
+import br.uel.image.process.edge.EdgeDetector;
 
-public class SobelEdgeDetector implements EdgeDetector{
+public class SobelEdgeDetector implements EdgeDetector {
 
     private static final int[][] HORIZONTAL_KERNEL =   {{-1, -2, -1},
                                                         {0,  0,  0},

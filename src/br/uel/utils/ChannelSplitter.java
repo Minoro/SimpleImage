@@ -1,9 +1,8 @@
-package src.br.uel.utils;
+package br.uel.utils;
 
-
-import src.br.uel.image.SimpleColorImage;
-import src.br.uel.image.SimpleGrayImage;
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleColorImage;
+import br.uel.image.SimpleGrayImage;
+import br.uel.image.SimpleImage;
 
 public class ChannelSplitter {
 

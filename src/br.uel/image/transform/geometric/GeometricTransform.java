@@ -1,8 +1,8 @@
-package src.br.uel.image.transform.geometric;
+package br.uel.image.transform.geometric;
 
-import src.br.uel.image.SimpleColorImage;
-import src.br.uel.image.SimpleGrayImage;
-import src.br.uel.image.SimpleImage;
+import br.uel.image.SimpleColorImage;
+import br.uel.image.SimpleGrayImage;
+import br.uel.image.SimpleImage;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 public class GeometricTransform {
 
-    public SimpleImage scale(SimpleImage image, int t){
+    public SimpleImage scale(SimpleImage image, int t) {
         double scale = 1;
 
         if (image.getWidth() > image.getHeight()) {
@@ -21,8 +21,8 @@ public class GeometricTransform {
             scale = (t / (double) (image.getHeight()));
         }
 
-        int newWidth = (int)(scale*image.getWidth());
-        int newHeight = (int)(scale*image.getHeight());
+        int newWidth = (int) (scale * image.getWidth());
+        int newHeight = (int) (scale * image.getHeight());
 
         BufferedImage imageOut = new BufferedImage((int) (scale * image.getWidth()),
                 (int) (scale * image.getHeight()), BufferedImage.TYPE_INT_RGB);
@@ -31,13 +31,13 @@ public class GeometricTransform {
         g.drawImage(imageScaled, 0, 0, null);
         g.dispose();
 
-        if (image.isGray()){
+        if (image.isGray()) {
             return new SimpleGrayImage(imageOut);
         }
         return new SimpleColorImage(imageOut);
     }
 
-    public SimpleImage scale(SimpleImage image, int newWidth, int newHeight){
+    public SimpleImage scale(SimpleImage image, int newWidth, int newHeight) {
         BufferedImage imageOut = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
 
         Graphics2D g = (Graphics2D) imageOut.getGraphics();
@@ -45,17 +45,17 @@ public class GeometricTransform {
         g.drawImage(imageScaled, 0, 0, null);
         g.dispose();
 
-        if (image.isGray()){
+        if (image.isGray()) {
             return new SimpleGrayImage(imageOut);
         }
         return new SimpleColorImage(imageOut);
     }
 
-    public SimpleImage rotate(SimpleImage image, double angle){
+    public SimpleImage rotate(SimpleImage image, double angle) {
         return rotate(image, angle, false);
     }
 
-    public SimpleImage rotate(SimpleImage image, double angle, boolean truncate){
+    public SimpleImage rotate(SimpleImage image, double angle, boolean truncate) {
         AffineTransform tx = new AffineTransform();
         tx.rotate(Math.toRadians(angle), image.getWidth() / 2.0, image.getHeight() / 2.0);
 
@@ -67,7 +67,7 @@ public class GeometricTransform {
 
         double dTransX = 0;
         double dTransY = 0;
-        if(!truncate) {
+        if (!truncate) {
             for (int i = 0; i < 4; i++) {
                 if (aCorners[i].getX() < 0 && aCorners[i].getX() < dTransX)
                     dTransX = aCorners[i].getX();
@@ -82,32 +82,32 @@ public class GeometricTransform {
 
         BufferedImage imageOut = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR).filter(image.getBufferedImage(), null);
 
-        if(image.isGray()) {
+        if (image.isGray()) {
             return new SimpleGrayImage(imageOut);
         }
         return new SimpleColorImage(imageOut);
     }
 
-    public SimpleImage flipVertically(SimpleImage image){
+    public SimpleImage flipVertically(SimpleImage image) {
         AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
         tx.translate(0, -image.getHeight());
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         BufferedImage imageOut = op.filter(image.getBufferedImage(), null);
 
-        if(image.isGray()) {
+        if (image.isGray()) {
             return new SimpleGrayImage(imageOut);
         }
         return new SimpleColorImage(imageOut);
     }
 
-    public SimpleImage flipHorizontally(SimpleImage image){
+    public SimpleImage flipHorizontally(SimpleImage image) {
         AffineTransform tx = AffineTransform.getScaleInstance(1, -1);
         tx = AffineTransform.getScaleInstance(-1, 1);
         tx.translate(-image.getWidth(), 0);
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         BufferedImage imageOut = op.filter(image.getBufferedImage(), null);
 
-        if(image.isGray()) {
+        if (image.isGray()) {
             return new SimpleGrayImage(imageOut);
         }
         return new SimpleColorImage(imageOut);
