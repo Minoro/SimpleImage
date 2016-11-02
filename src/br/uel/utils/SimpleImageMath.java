@@ -81,8 +81,10 @@ public class SimpleImageMath {
         SimpleImage imageOut;
         if(image1.isGray()){
             imageOut = new SimpleGrayImage(w, h);
-        }else{
+        }else if(image1.isBinary()){
             imageOut = new SimpleBinaryImage(w, h);
+        }else {
+            imageOut = new SimpleColorImage(w, h);
         }
         int rgb[] = new int[3];
         for(int y = 0; y < h; y++){
@@ -104,6 +106,8 @@ public class SimpleImageMath {
         }
         return imageOut;
     }
+
+
 
 
 }
