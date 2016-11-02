@@ -166,4 +166,49 @@ public class SimpleImageMath {
         return imageOut;
     }
 
+    /**
+     * Subitrai (pixel a pixel) duas imagens do mesmo tipo e tamanho. Imagem1(x,y) - Imagem2(x,y)
+     * @return SimpleImage
+     */
+    public SimpleImage sub(SimpleImage image1, SimpleImage image2){
+        if(image1.getWidth() != image2.getWidth() || image1.getHeight() != image2.getHeight()){
+            throw  new IllegalArgumentException("As imagens devem ter o mesmo tamanho!");
+        }
+
+        if((!image1.isGray() || !image2.isGray())
+                && (!image1.isBinary() || !image2.isBinary())
+                && (!(image1 instanceof SimpleColorImage) || !(image2 instanceof SimpleColorImage))){
+            throw new IllegalArgumentException("As imagem devem ser do mesmo tipo!");
+        }
+
+        int w = image1.getWidth(), h = image1.getHeight();
+        SimpleImage imageOut;
+        if(image1.isGray()){
+            imageOut = new SimpleGrayImage(w, h);
+        }else if(image1.isBinary()){
+            imageOut = new SimpleBinaryImage(w, h);
+        }else {
+            imageOut = new SimpleColorImage(w, h);
+        }
+        int rgb[] = new int[3];
+        for(int y = 0; y < h; y++){
+            for(int x = 0; x < w; x++){
+                int rgb1[] = image1.getRGB(x, y);
+                int rgb2[] = image2.getRGB(x, y);
+
+                rgb[0] = rgb1[0] - rgb2[0];
+                rgb[1] = rgb1[1] - rgb2[1];
+                rgb[2] = rgb1[2] - rgb2[2];
+
+                //evita valores maiores que 255
+                rgb[0] =  rgb[0] < 0 ? 0 : rgb[0];
+                rgb[1] =  rgb[1] < 0 ? 0 : rgb[1];
+                rgb[2] =  rgb[2] < 0 ? 0 : rgb[2];
+
+                imageOut.setRGB(x, y, rgb);
+            }
+        }
+        return imageOut;
+    }
+
 }
