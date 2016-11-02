@@ -11,7 +11,8 @@ import br.uel.image.SimpleImage;
 public class SimpleImageMath {
 
     /**
-     * Adiciona um valor para cada pixel da imagem, se for uma imagem RGB adiciona o valor a todos os canais
+     * Adiciona um valor para cada pixel da imagem, se for uma imagem RGB adiciona o valor a todos os canais. Se a imagem
+     * for binária nenhuma alteração será feita
      * @param image SimpleImage, imagem de entrada
      * @param value int, valor a ser adicionado
      * @return SimpleImage, imagem com valor adicionado
@@ -107,7 +108,62 @@ public class SimpleImageMath {
         return imageOut;
     }
 
+    /**
+     * Subtrai um valor de todos os pixels de uma imagem. Se a imagem for RGB o valor sera subtraído de todos os canais.
+     * Se a imagem for binária nenhuma alteração será feita.
+     * @param image SimpeImage, imagem de entrada
+     * @param value int, valor a ser subtraido de todos os pixels
+     * @return SimpleImage, imagem alterado
+     */
+    public SimpleImage sub(SimpleImage image, int value){
+        if(image.isBinary()){
+            return image;
+        }
 
+        if(image instanceof SimpleColorImage){
+            return this.sub((SimpleColorImage)image, value, value, value);
+        }
 
+        int w = image.getWidth(), h = image.getHeight();
+        SimpleImage imageOut = new SimpleGrayImage(w, h);
+
+        for(int y = 0; y < h; y++){
+            for(int x = 0; x < w; x++){
+                int pixel = image.getPixel(x,y) - value;
+                if(pixel < 0){
+                    pixel = 0;
+                }
+
+                imageOut.putPixel(x, y, pixel);
+            }
+        }
+
+        return imageOut;
+    }
+
+    /**
+     * Subtrai os valores de seus respectivos canais
+     * @param image SimpleColorImage, imagem a ser modificada
+     * @return SimpleColorImage, imagem com os valores subtraidos
+     */
+    public SimpleColorImage sub(SimpleColorImage image, int r, int g, int b){
+        int w = image.getWidth(), h = image.getHeight();
+
+        SimpleColorImage imageOut = new SimpleColorImage(w, h);
+
+        for(int y = 0; y < h; y++){
+            for(int x = 0; x < w; x++){
+                int rgb[] = image.getRGB(x, y);
+                //Evita valores menores que 0
+                int pixelR = rgb[0]-r < 0 ? 0 : rgb[0]-r;
+                int pixelG = rgb[1]-g < 0 ? 0 : rgb[1]-g;
+                int pixelB = rgb[2]-b < 0 ? 0 : rgb[2]-b;
+
+                imageOut.setRGB(x,y, pixelR, pixelG, pixelB);
+            }
+        }
+
+        return imageOut;
+    }
 
 }
