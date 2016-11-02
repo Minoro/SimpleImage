@@ -52,8 +52,8 @@ public class SimpleImageMath {
                 int rgb[] = image.getRGB(x, y);
                 //Evita valores acima do 255
                 int pixelR = r+rgb[0] > 255 ? 255 : r+rgb[0];
-                int pixelG = r+rgb[1] > 255 ? 255 : g+rgb[1];
-                int pixelB = r+rgb[2] > 255 ? 255 : b+rgb[2];
+                int pixelG = g+rgb[1] > 255 ? 255 : g+rgb[1];
+                int pixelB = b+rgb[2] > 255 ? 255 : b+rgb[2];
 
                 imageOut.setRGB(x,y, pixelR, pixelG, pixelB);
 
