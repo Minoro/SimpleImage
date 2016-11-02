@@ -1,7 +1,7 @@
-package src.br.uel.image.process.filter;
+package br.uel.image.process.filter;
 
-import src.br.uel.image.SimpleImage;
-import src.br.uel.image.process.Convolution;
+import br.uel.image.SimpleImage;
+import br.uel.image.process.Convolution;
 
 public class GaussianFilter implements Filter {
 
